@@ -1,59 +1,24 @@
 // https://astro.build/config
-import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel'; // Changed adapter to Vercel
 import { defineConfig } from 'astro/config';
-import rehypeExternalLinks from 'rehype-external-links';
-import { serializeSitemap, shouldIndexPage } from './sitemap.mjs';
-
 import react from '@astrojs/react';
 
-// https://astro.build/config
 export default defineConfig({
-  site: 'https://roadmap.sh/',
+  site: 'https://your-vercel-url.com/', // Update this to your Vercel deployment URL
   markdown: {
     shikiConfig: {
-      theme: 'dracula',
+      theme: 'dracula', // You can change the theme if you want
     },
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: function (element) {
-            const href = element.properties.href;
-            const whiteListedStarts = [
-              '/',
-              '#',
-              'mailto:',
-              'https://github.com/kamranahmedse',
-              'https://thenewstack.io',
-              'https://kamranahmed.info',
-              'https://roadmap.sh',
-            ];
-            if (whiteListedStarts.some((start) => href.startsWith(start))) {
-              return [];
-            }
-            return 'noopener noreferrer nofollow';
-          },
-        },
-      ],
-    ],
   },
-  output: 'hybrid',
-  adapter: node({
-    mode: 'standalone',
-  }),
+  output: 'static', // Change to static for fully static site generation
+  adapter: vercel(), // Vercel adapter for deployment
   trailingSlash: 'never',
   integrations: [
     tailwind({
       config: {
         applyBaseStyles: false,
       },
-    }),
-    sitemap({
-      filter: shouldIndexPage,
-      serialize: serializeSitemap,
     }),
     react(),
   ],
