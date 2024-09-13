@@ -39,17 +39,19 @@ const { frontmatter: guideFrontmatter, author } = guide;
         {replaceVariables(guideFrontmatter.title)}
       </h1>
       <p class='my-0 flex items-center justify-start text-sm text-gray-400'>
-        <a
-          href={`/authors/${author.id}`}
-          class='inline-flex items-center font-medium underline-offset-2 hover:text-gray-600 hover:underline'
-        >
-          <img
-            alt={author.frontmatter.name}
-            src={author.frontmatter.imageUrl}
-            class='mb-0 mr-2 inline h-5 w-5 rounded-full'
-          />
-          {author.frontmatter.name}
-        </a>
+        {author && (
+          <a
+            href={`/authors/${author.id}`}
+            class='inline-flex items-center font-medium underline-offset-2 hover:text-gray-600 hover:underline'
+          >
+            <img
+              alt={author.frontmatter.name}
+              src={author.frontmatter.imageUrl}
+              class='mb-0 mr-2 inline h-5 w-5 rounded-full'
+            />
+            {author.frontmatter.name}
+          </a>
+        )}
         <span class='mx-2 hidden sm:inline'>&middot;</span>
         <a
           class='hidden underline-offset-2 hover:text-gray-600 sm:inline'

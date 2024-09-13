@@ -8,7 +8,7 @@ import {
 } from 'react';
 import './GenerateRoadmap.css';
 import { useToast } from '../../hooks/use-toast';
-import { generateAIRoadmapFromText } from '../../../editor/utils/roadmap-generator';
+// import { generateAIRoadmapFromText } from '../../../editor/utils/roadmap-generator';
 import { renderFlowJSON } from '../../../editor/renderer/renderer';
 import { replaceChildren } from '../../lib/dom';
 import { readAIRoadmapStream } from '../../helper/read-stream';
